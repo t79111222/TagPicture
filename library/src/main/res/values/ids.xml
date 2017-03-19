@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="id" name="tagview_body" />
+    <item type="id" name="tagview_contents" />
+    <item type="id" name="tagview_flag" />
+    <item type="id" name="tagview_text" />
+</resources>
