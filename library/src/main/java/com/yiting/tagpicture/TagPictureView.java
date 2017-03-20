@@ -73,25 +73,6 @@ public class TagPictureView extends FrameLayout{
 		super(context, attrs, defStyle);
 		init(context);
 	}
-	
-	@Override
-	protected void onConfigurationChanged(Configuration newConfig) {
-		super.onConfigurationChanged(newConfig);
-		mTagFrameLayout.setVisibility(INVISIBLE);
-		mHandler.sendEmptyMessageDelayed(0, 1000);
-	}
-
-	private Handler mHandler = new Handler(){
-		public void dispatchMessage(android.os.Message msg) {
-			setImageSize();
-			ArrayList<TagInfo> tagInfos = mTagManager.getTagInfos();
-			for(TagInfo info : tagInfos){
-				int tagViewWidth = getTagViewWidth(info.tagView.textView);
-				setTagSeat(info.tagView, info.atBitmapCoordinate, tagViewWidth);
-			}
-			mTagFrameLayout.setVisibility(VISIBLE);
-		};
-	};
 
 	private void init(Context context){
 		mTagManager = new TagManager();
@@ -224,7 +205,22 @@ public class TagPictureView extends FrameLayout{
 			lp.topMargin = moveTagY;
 			mTagEditView.setLayoutParams(lp);
 		}
+
+		mTagFrameLayout.setVisibility(INVISIBLE);
+		mHandler.sendEmptyMessageDelayed(0, 1000);
 	}
+
+
+	private Handler mHandler = new Handler(){
+		public void dispatchMessage(android.os.Message msg) {
+			ArrayList<TagInfo> tagInfos = mTagManager.getTagInfos();
+			for(TagInfo info : tagInfos){
+				int tagViewWidth = getTagViewWidth(info.tagView.textView);
+				setTagSeat(info.tagView, info.atBitmapCoordinate, tagViewWidth);
+			}
+			mTagFrameLayout.setVisibility(VISIBLE);
+		};
+	};
 	
 	@Override
 	public void setEnabled(boolean enabled) {
@@ -535,12 +531,13 @@ public class TagPictureView extends FrameLayout{
 		}else if(coordinateAtTagPictureView.x > (mWidth - tagViewWidth / 2)){
 			flagLeft = Integer.valueOf(tagViewWidth - (mWidth - coordinateAtTagPictureView.x) - halfFlagViewWidth);
 		}
-		
+
 		int tagViewLeft;
 		if(flagLeft != null){
 			tagView.setFlagViewMarginLeft(flagLeft.intValue());
 			tagViewLeft = coordinateAtTagPictureView.x - flagLeft.intValue() - halfFlagViewWidth;
 		}else{
+			tagView.setFlagViewInCenter();
 			tagViewLeft = coordinateAtTagPictureView.x - tagViewWidth / 2;
 		}
 

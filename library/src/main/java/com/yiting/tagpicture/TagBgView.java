@@ -18,7 +18,7 @@ public class TagBgView extends RelativeLayout{
     private ImageView mFlag;
     private Integer mFlagViewMarginLeft =  null;
     private OnGlobalListener mOnGlobalListener;
-
+    private TagViewConfig mConf;
     public TagBgView(Context context) {
         super(context);
         init(context);
@@ -35,7 +35,9 @@ public class TagBgView extends RelativeLayout{
     }
 
     private void init(Context context) {
-        TagViewConfig conf = TagViewConfig.getTagViewConfig(context);
+        mConf = TagViewConfig.getTagViewConfig(context);
+
+        this.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 
         mBody = new RelativeLayout(getContext());
 //		mBody.setBackgroundDrawable(new RoundDrawable());
@@ -44,12 +46,12 @@ public class TagBgView extends RelativeLayout{
         LayoutParams bodyLP = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         bodyLP.addRule(RelativeLayout.ALIGN_PARENT_TOP);
         bodyLP.addRule(RelativeLayout.CENTER_HORIZONTAL);
-        bodyLP.topMargin = conf.flagViewHeight - conf.drawPaintSize;
+        bodyLP.topMargin = mConf.flagViewHeight - mConf.drawPaintSize;
         this.addView(mBody, bodyLP);
 
         mContents = new RelativeLayout(getContext());
         LayoutParams contentsLP = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-        mContents.setPadding(conf.contentsPaddingLeft, conf.contentsPaddingTop, conf.contentsPaddingRight, conf.contentsPaddingBotton);
+        mContents.setPadding(mConf.contentsPaddingLeft, mConf.contentsPaddingTop, mConf.contentsPaddingRight, mConf.contentsPaddingBotton);
         mContents.setId(R.id.tagview_contents);
         mBody.addView(mContents, contentsLP);
 
@@ -57,7 +59,7 @@ public class TagBgView extends RelativeLayout{
         mFlag.setImageResource(R.drawable.flag_a2);
         mFlag.setScaleType(ImageView.ScaleType.FIT_XY);
         mFlag.setId(R.id.tagview_flag);
-        LayoutParams flagViewLP = new LayoutParams(conf.flagViewWidth, conf.flagViewHeight);
+        LayoutParams flagViewLP = new LayoutParams(mConf.flagViewWidth, mConf.flagViewHeight);
         flagViewLP.addRule(RelativeLayout.ALIGN_PARENT_TOP);
         flagViewLP.addRule(RelativeLayout.CENTER_HORIZONTAL);
         addView(mFlag, flagViewLP);
@@ -98,6 +100,15 @@ public class TagBgView extends RelativeLayout{
             flagViewLP.addRule(RelativeLayout.CENTER_HORIZONTAL, 0);
             flagViewLP.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
             flagViewLP.leftMargin = left;
+            mFlag.setLayoutParams(flagViewLP);
+        }
+    }
+
+    public void setFlagViewInCenter(){
+        if(mFlag != null){
+            LayoutParams flagViewLP = new LayoutParams(mConf.flagViewWidth, mConf.flagViewHeight);
+            flagViewLP.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+            flagViewLP.addRule(RelativeLayout.CENTER_HORIZONTAL);
             mFlag.setLayoutParams(flagViewLP);
         }
     }
