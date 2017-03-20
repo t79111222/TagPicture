@@ -3,7 +3,11 @@
 [![license](https://img.shields.io/badge/license-Apache%202-blue.svg?maxAge=2592000)](https://github.com/t79111222/TagPicture/blob/master/LICENSE)
 
 
+
+[![Tag Photo](https://play.google.com/intl/en_us/badges/images/badge_new.png)](https://play.google.com/store/apps/details?id=com.yiting.tagphoto)
+
 ![example_gif](/image/example_gif.gif)
+
 
 
 ## Import
