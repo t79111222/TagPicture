@@ -175,6 +175,10 @@ public class TagPictureView extends FrameLayout{
 		}
 	}
 
+	public ArrayList<TagInfo> getTagInfos(){
+		return mTagManager.getTagInfos();
+	}
+
 	public void setEditCompleteOnTouchOutside(boolean editComplete){
         this.mIsTouchOutsideEditComplete = editComplete;
     }
