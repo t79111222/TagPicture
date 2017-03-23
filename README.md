@@ -1,5 +1,5 @@
 # TagPicture 標記照片
-[![build](https://img.shields.io/badge/build-1.0.0-brightgreen.svg?maxAge=2592000)](https://dl.bintray.com/t79111222/TagPicture)
+[![build](https://img.shields.io/badge/build-1.0.0-brightgreen.svg?maxAge=2592000)](https://bintray.com/t79111222/maven/TagPicture)
 [![license](https://img.shields.io/badge/license-Apache%202-blue.svg?maxAge=2592000)](https://github.com/t79111222/TagPicture/blob/master/LICENSE)
 
 
