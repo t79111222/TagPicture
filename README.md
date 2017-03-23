@@ -15,14 +15,16 @@
 Maven
 
     <dependency>
-      <groupId>com.yiting</groupId>
+      <groupId>com.yiting.tagpicture</groupId>
       <artifactId>library</artifactId>
-      <version>1.0.0</version>
+      <version>1.0.1</version>
       <type>pom</type>
     </dependency>
 
     
 or Gradle
+
+    compile 'com.yiting.tagpicture:library:1.0.1'
 
 ## 使用方法
 
